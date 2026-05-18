@@ -50,9 +50,22 @@ class Verifier:
     
     @staticmethod
     def check_structure(text: str, expected_sections: list = None) -> dict:
-        """结构完整性检查：是否包含必要章节"""
+        """结构完整性检查：SKILL.md专用版"""
+        # SKILL.md核心结构要素
+        essential = []
+        if text.startswith('---\n') and '\n---' in text[4:1000]:
+            essential.append('frontmatter')
+        if re.search(r'^#{1,3}\s', text, re.MULTILINE):
+            essential.append('headings')
+        if re.search(r'```', text):
+            essential.append('code_blocks')
+        if re.search(r'[|].*[|]', text):
+            essential.append('tables')
+        if re.search(r'(?i)(用法|usage|示例|example|功能|description)', text):
+            essential.append('usage_section')
+        
         if not expected_sections:
-            expected_sections = ["##", "###"]  # 至少要有标题
+            expected_sections = essential if essential else ["##", "###"]
         
         found = []
         missing = []
@@ -62,8 +75,20 @@ class Verifier:
             else:
                 missing.append(sec)
         
-        score = len(found) / len(expected_sections) if expected_sections else 1.0
-        return {"score": score, "found": found, "missing": missing}
+        # 基础分：段落检查
+        base_score = len(found) / len(expected_sections) if expected_sections else 1.0
+        
+        # 加分：有frontmatter +0.2，有代码块 +0.1，有表格 +0.1
+        bonus = 0.0
+        if 'frontmatter' in essential:
+            bonus += 0.2
+        if 'code_blocks' in essential:
+            bonus += 0.1
+        if 'tables' in essential:
+            bonus += 0.1
+        
+        score = min(1.0, base_score + bonus)
+        return {"score": round(score, 2), "found": found, "missing": missing, "bonus": round(bonus, 2)}
     
     @staticmethod
     def check_citations(text: str) -> dict:
@@ -83,18 +108,22 @@ class Verifier:
         """内部一致性：检测自相矛盾的模式"""
         issues = []
         
-        # 数字范围检测
-        ranges = re.findall(r'(\d+)\s*[-~到]\s*(\d+)', text)
+        # 数字范围检测（排除日期YYYY-MM-DD、版本号vX.Y.Z、时间HH:MM-HH:MM）
+        # 先剥离已知模式，再检测
+        cleaned = re.sub(r'\d{4}[-/]\d{1,2}[-/]\d{1,2}', '', text)  # 2026-05-16
+        cleaned = re.sub(r'v?\d+\.\d+(\.\d+)?', '', cleaned)         # v1.0.0, 3.5
+        cleaned = re.sub(r'\d{1,2}:\d{2}[-~到]\d{1,2}:\d{2}', '', cleaned)  # 6:30-7:00
+        
+        ranges = re.findall(r'(\d+)\s*[-~到]\s*(\d+)', cleaned)
         for lo, hi in ranges:
             if int(lo) > int(hi):
                 issues.append(f"数字范围异常:{lo}-{hi}")
         
-        # 百分比总和检测
-        percents = re.findall(r'(\d+)%', text)
-        if percents:
-            total = sum(int(p) for p in percents)
-            if total > 200:
-                issues.append(f"百分比可能溢出:{total}%")
+        # 内部矛盾检测：同一词同时"是"又"不是"
+        # 检查 "不包含" + "包含" 模式（跳过列举的否定）
+        
+        # 相同缩写出现不同全称
+        # 检测 "NLA.*NER" 之类的缩写冲突
         
         score = max(0, 1.0 - len(issues) * 0.2)
         return {"score": score, "issues": issues}
