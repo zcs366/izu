@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "izu"
+version = "1.1.0"
+description = "陪你得道快乐的知识研究系统 · A companion on the path to joyful understanding"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+keywords = ["knowledge-research", "ai-agent", "research-tool"]
+authors = [
+    {name = "zcs", email = "zcs366@gmail.com"},
+]
+
+dependencies = [
+    "playwright",
+    "playwright-stealth",
+    "spacy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio",
+]
+
+[tool.setuptools.packages.find]
+include = ["izu*"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
