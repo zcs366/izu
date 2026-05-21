@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>izu 评估报告模板 Phase 2</title>
+<style>
+/* ══════════════════════════════════════════════
+   izu 评估报告模板 — Phase 2: 手写HTML结构
+   使用此模板替换之前的 markdown→HTML 转换
+   ══════════════════════════════════════════════ */
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  max-width: 880px; margin: 0 auto; padding: 24px 32px;
+  line-height: 1.7; color: #2c2c2c; background: #fcfcfc; }
+
+h1 { color: #8B5E3C; border-bottom: 3px solid #8B5E3C;
+  padding-bottom: 10px; font-size: 26px; margin-top: 0; }
+h2 { color: #6B4226; margin-top: 36px; font-size: 20px;
+  border-left: 4px solid #8B5E3C; padding-left: 12px; }
+h3 { color: #6B4226; font-size: 17px; margin-top: 24px; }
+
+blockquote { border-left: 4px solid #8B5E3C;
+  padding: 14px 20px; margin: 16px 0;
+  background: #fdf6ee; border-radius: 4px;
+  font-style: italic; color: #5a3d2b; }
+
+.badge { display: inline-block; padding: 4px 14px;
+  border-radius: 20px; font-weight: 700; font-size: 0.88em;
+  letter-spacing: 0.3px; }
+.badge-pass { background: #d4edda; color: #155724; }
+.badge-warn { background: #fff3cd; color: #856404; }
+.badge-fail { background: #f8d7da; color: #721c24; }
+.badge-info { background: #cce5ff; color: #004085; }
+
+details { margin: 12px 0; padding: 12px 16px;
+  background: #f8f8f8; border-radius: 6px;
+  border: 1px solid #e8e8e8; }
+details[open] { border-color: #8B5E3C; }
+summary { cursor: pointer; font-weight: 600; color: #6B4226;
+  padding: 4px 0; font-size: 15px; }
+summary:hover { color: #8B5E3C; }
+
+table { border-collapse: collapse; width: 100%;
+  margin: 16px 0; font-size: 14px; }
+th { background: #8B5E3C; color: white; padding: 10px 14px;
+  text-align: left; font-weight: 600; }
+td { padding: 8px 14px; border-bottom: 1px solid #e0d6cc; }
+tr:nth-child(even) { background: #f9f1e7; }
+tr:hover { background: #efe5d8; }
+
+.col-win { background: #d4edda !important; font-weight: 600; }
+.col-lose { background: #f8d7da !important; }
+.col-equal { background: #fff3cd !important; }
+
+.card { background: white; border: 1px solid #e0d6cc;
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.card-title { font-weight: 700; color: #6B4226;
+  margin-bottom: 8px; font-size: 15px; }
+
+.progress-bar { height: 8px; border-radius: 4px;
+  background: #e0d6cc; margin: 8px 0; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.progress-p0 { background: #dc3545; width: 100%; }
+.progress-p1 { background: #fd7e14; width: 70%; }
+.progress-p2 { background: #ffc107; width: 40%; }
+
+.sigil-quote { border-left: 4px solid #8B5E3C;
+  padding: 16px 22px; margin: 20px 0;
+  background: linear-gradient(135deg, #fdf6ee 0%, #faf0e6 100%);
+  border-radius: 0 8px 8px 0; font-style: italic;
+  color: #4a3525; font-size: 15px;
+  position: relative; }
+.sigil-quote::before { content: "军师按"; position: absolute;
+  top: -10px; left: 16px; background: #8B5E3C; color: white;
+  padding: 0 10px; font-size: 12px; border-radius: 3px;
+  font-style: normal; font-weight: 600; }
+
+pre { background: #2d2d2d; color: #f8f8f2; padding: 16px;
+  border-radius: 6px; overflow-x: auto; font-size: 13px; }
+code { background: #f0ece6; padding: 2px 6px; border-radius: 3px;
+  font-size: 0.9em; color: #6B4226; }
+pre code { background: transparent; padding: 0; color: inherit; }
+
+.footer { margin-top: 48px; padding-top: 12px;
+  border-top: 2px solid #e0d6cc; font-size: 0.85em; color: #999;
+  display: flex; justify-content: space-between; }
+.footer .date { font-weight: 600; color: #8B5E3C; }
+
+@media (max-width: 640px) {
+  body { padding: 16px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<h1>报告标题：评估主题</h1>
+
+<p>
+  <strong>评估等级</strong>：<span class="badge badge-pass">🟡 大</span>
+  <strong>来源</strong>：来源名称
+  <strong>日期</strong>：2026-05-19
+</p>
+
+<h2>核心摘要</h2>
+<p>一句话描述。从「什么问题→什么方案→什么效果」写。</p>
+
+<h2>核实</h2>
+<table>
+  <tr><th>文章声称</th><th>核实结果</th></tr>
+  <tr><td>声称A</td><td>✅ 确认</td></tr>
+  <tr><td>声称B</td><td>⚠️ 需要确认</td></tr>
+</table>
+
+<h2>定论</h2>
+<p><span class="badge badge-pass">✅ 推荐</span> 一句话总结。</p>
+
+<details>
+<summary>📋 详细分析（点击展开）</summary>
+<div class="card">
+  <div class="card-title">🏆 优势</div>
+  <ul><li>优势点</li></ul>
+</div>
+</details>
+
+<h2>行动优先级</h2>
+<div>P0（立即） <div class="progress-bar"><div class="progress-fill progress-p0"></div></div></div>
+<div>P1（本周） <div class="progress-bar"><div class="progress-fill progress-p1"></div></div></div>
+
+<h3>对照表（行级胜出标记）</h3>
+<table>
+  <tr><th>维度</th><th>方案A</th><th class="col-win">方案B ✅</th></tr>
+  <tr><td>成本</td><td class="col-lose">$30/月</td><td class="col-win">$0</td></tr>
+</table>
+
+<div class="sigil-quote">军师按：一句话总结。</div>
+
+<div class="footer">
+  <span class="date">生成日期：2026-05-19</span>
+  <span>izu Phase 2 模板 · 军师祭酒</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>核战队前沿审阅 · 2026-05-17</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.7;max-width:960px;margin:0 auto;padding:20px}
+h1{font-size:1.8em;margin-bottom:5px}
+.meta{color:#666;font-size:0.9em;margin-bottom:30px;border-bottom:2px solid #e0e0e0;padding-bottom:15px}
+h2{font-size:1.3em;margin:30px 0 15px;color:#16213e;border-left:4px solid #e94560;padding-left:12px}
+h3{font-size:1.05em;margin:20px 0 10px;color:#0f3460}
+h4{margin:15px 0 5px;color:#333}
+.summary-box{background:#e8f4f8;border-radius:8px;padding:20px;margin-bottom:25px;border-left:4px solid #0f3460}
+.summary-box p{margin-bottom:10px}
+.paper{margin-bottom:20px;border:1px solid #e0e0e0;border-radius:6px;padding:12px 15px;background:#fff}
+.paper h3{font-size:1em;margin:0 0 5px}
+.paper .verdict{display:inline-block;padding:2px 10px;border-radius:3px;font-size:0.8em;font-weight:bold;color:#fff;margin-bottom:8px}
+.tag-p0{background:#e94560}
+.tag-p1{background:#e07c24}
+.tag-p2{background:#f0a500}
+.tag-observe{background:#6c757d}
+.tag-noise{background:#adb5bd}
+.paper p{margin:3px 0;font-size:0.92em;color:#444}
+.actions{background:#fff;border-radius:6px;padding:15px 20px;margin-bottom:20px}
+.actions ul{list-style:none;padding:0}
+.actions li{padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:0.92em}
+.actions li:last-child{border:none}
+.immune{background:#fff3f3;border:1px solid #f5c6cb;border-radius:6px;padding:15px;margin-bottom:20px}
+.immune h4{color:#721c24}
+.immune p{font-size:0.9em;margin:5px 0}
+details{margin:20px 0}
+details summary{cursor:pointer;font-weight:bold;color:#0f3460;padding:8px;background:#e8e8e8;border-radius:4px}
+details .inner{padding:15px;border:1px solid #ddd;border-top:none;border-radius:0 0 4px 4px}
+footer{text-align:center;color:#999;font-size:0.8em;margin-top:40px;padding-top:20px;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+
+<h1>🌐 核战队前沿审阅 · 2026-05-17</h1>
+<p class="meta">
+  📅 2026-05-17 · 08:45 CST<br>
+  🧑‍⚖️ 参与专家：子产·Nate Silver·Orwell·鲁班·匠石·Newton·Edison·韩信·Turing·Feynman·萧何·von Neumann·刘伯温·子贡·张骞·乔布斯·Jony Ive<br>
+  📎 审阅对象：AI前沿日报（10篇）<br>
+  📁 完整报告：<code>output/doc/frontier-review-2026-05-17.md</code>
+</p>
+
+<section id="summary">
+<h2>📋 每日综述</h2>
+<div class="summary-box">
+<p><strong>MCP生态进入"从提案到攻防"的转折期。</strong></p>
+
+<p>5月17日日报呈现了一个清晰的信号集群：MCP生态在同一天内给出了四个方向的完整拼图——MCP-Cosmos（智能增强）、MCP Workflow Engine（效率革命）、MCP-BiFlow（安全审计）、MCPShield（攻击检测）。这不是偶然的论文扎堆，而是MCP协议从"能不能用"走到"怎么安全高效地用"的必然产物。其中最重磅的信号是MCP-BiFlow对15,452个真实MCP仓库的普查——118条漏洞路径不是"可能"，是"已经存在"。</p>
+
+<p>对Hermes Agent的影响是直接的——<strong>MCP安全审计CI/CD（P0 6h）</strong>和<strong>MCP Workflow Engine原型（P0 14h，推迟到6月）</strong>应该启动。对izu的影响通过<strong>SDAR训练管线增强（P0 16h，ROI最高：ALFWorld+9.4%/WebShop+10.2%）</strong>和<strong>MemEye评测框架调研（P1 1h）</strong>间接传导。</p>
+
+<p>SU-01（30B→IMO金牌）传播价值最高但不值得投入——刘伯温判定不可回滚。Orwell标记MinT和Darwin为噪音。</p>
+
+<p><strong>四个P0行动：</strong></p>
+<p>① <strong>MCP安全审计CI/CD</strong> — MCP-BiFlow思路，6小时搞定基线<br>
+② <strong>izu训练管线插入SDAR门控</strong> — 16小时，ROI最高<br>
+③ <strong>MCP Workflow Engine原型</strong> — 14小时，推迟到6月<br>
+④ <strong>MCP模拟验证层</strong> — 3小时，合并到#1</p>
+
+<p>⚠️ 核心约束：4项P0共需36h，远超日均1h×4周=20h。必须串行：先#1(6h)→#2(16h)→#3(14h,6月)。</p>
+</div>
+</section>
+
+<h2>📄 逐篇审阅</h2>
+
+<div class="paper">
+  <h3>1. SDAR — 自蒸馏智能体强化学习</h3>
+  <span class="verdict tag-p0">P0 立即行动</span>
+  <p><strong>信号评审：</strong>🟢 真信号。Nate Silver P=0.85。HF 77 upvotes，开源代码。问题真方法新，效果增量9.4%是均线非极端值。Orwell标记"方法论增量"而非"范式突破"。</p>
+  <p><strong>技术评审：</strong>可直接代码落地。匠石确认不需要模型改动，在训练管线中加门控。Newton挖出：Teacher的privileged context如果被污染则蒸馏信号引入偏差。Edison确认可复现，A100-80G即可。</p>
+  <p><strong>远景评审：</strong>Turing：补丁型改进。Feynman：负面轨迹经soft衰减可重新利用——数据效率翻倍潜力被低估。</p>
+  <p><strong>资源评审：</strong>ROI最高——16h→+7~10%。四可全过。</p>
+  <p><strong>对外评审：</strong>可发知乎深度技术文。建议等izu跑出数据再包装。</p>
+  <p><strong>汇总：P0</strong> — 本周开始izu训练管线插入SDAR门控（16h）</p>
+</div>
+
+<div class="paper">
+  <h3>2. MemEye — 多模态Agent记忆评测</h3>
+  <span class="verdict tag-p1">P1 本周调研</span>
+  <p><strong>信号评审：</strong>🟢 真信号。NVIDIA 46页长文。13种记忆方法×4种VLM系统消融。Orwell未发现伪深度。</p>
+  <p><strong>技术评审：</strong>方法论可复用。完整复现需7人日。Newton指出核心假设风险：Agent决策本质上可能不依赖像素精度。</p>
+  <p><strong>远景评审：</strong>Feynman："大家都看到了问题但没人测量"的盲区暴露。</p>
+  <p><strong>资源评审：</strong>可测量可回滚。建议只花1小时调研可复用子集。</p>
+  <p><strong>对外评审：</strong>三级分发：知乎深度→公众号科普→元宝派一句话。</p>
+  <p><strong>汇总：P1</strong> — 本周花1小时调研评测框架可复用子集</p>
+</div>
+
+<div class="paper">
+  <h3>3. MinT — LLM训练服务基础设施</h3>
+  <span class="verdict tag-noise">噪音</span>
+  <p><strong>信号评审：</strong>🔴 本周最大伪深度。Orwell标记"披着论文外衣的产品白皮书"。HF 205↑W20周榜第1是社区热度不是学术价值。</p>
+  <p><strong>技术评审：</strong>不可复现。不涉及代码改造。</p>
+  <p><strong>远景评审：</strong>Turing："把我们不面临的问题的解决方案"。</p>
+  <p><strong>资源评审：</strong>刘伯温：不通过四可测试。投入=0。</p>
+  <p><strong>汇总：噪音</strong> — 跳过</p>
+</div>
+
+<div class="paper">
+  <h3>4. MCP-Cosmos — 世界模型+MCP</h3>
+  <span class="verdict tag-observe">提取思想</span>
+  <p><strong>信号评审：</strong>🟡 有增量价值但包装过度。Orwell标记"把已有技术装到新框架里"。Dyna(1990)/MuZero/Dreamer早已成熟。</p>
+  <p><strong>技术评审：</strong>核心不是训练世界模型，是加模拟验证层。</p>
+  <p><strong>远景评审：</strong>Turing："不走错路比走得更快更重要"。Feynman：世界模型本身可能比实际执行更容易出错。</p>
+  <p><strong>资源评审：</strong>不投入世界模型。模拟验证层（3h）合并到MCP-BiFlow安全审计。</p>
+  <p><strong>汇总：提取思想不动管线</strong> — 模拟验证层作为#1附属任务</p>
+</div>
+
+<div class="paper">
+  <h3>5. MCPShield — MCP攻击检测</h3>
+  <span class="verdict tag-p1">P1 本周调研</span>
+  <p><strong>信号评审：</strong>🟡 有增量价值。Nate Silver P=0.65。关键诚实发现：XGBoost在pooled embeddings上AUROC 0.975反而超过GNN的0.917。</p>
+  <p><strong>技术评审：</strong>不做GNN检测。先收集MCP调用日志做基线（2h）。</p>
+  <p><strong>远景评审：</strong>Feynman：检测只是事后，真正防御在MCP协议层面。</p>
+  <p><strong>资源评审：</strong>数据收集可回滚。GNN部署不可回滚。</p>
+  <p><strong>对外评审：</strong>合入MCP安全专题。乔布斯：创业价值★★★★★。</p>
+  <p><strong>汇总：P1</strong> — 收集MCP调用日志（2h），不做GNN检测模型</p>
+</div>
+
+<div class="paper">
+  <h3>6. MCP-BiFlow — MCP双向数据流风险</h3>
+  <span class="verdict tag-p0">P0 优先级最高</span>
+  <p><strong>信号评审：</strong>🟢 本周最强信号。15,452个仓库普查，118条漏洞路径。Nate Silver P=0.75。Orwell未标记问题。</p>
+  <p><strong>技术评审：</strong>核心是把扫描思路接入Hermes MCP Server审计CI/CD。Newton：MCP协议双向数据流设计存在结构性缺陷。</p>
+  <p><strong>远景评审：</strong>Turing："MCP协议正在暴露出TCP/IP早期类似的安全问题"。</p>
+  <p><strong>资源评审：</strong>四可全过。基线防护成本6h，若出事成本极高。</p>
+  <p><strong>对外评审：</strong>P0必发。乔布斯：MCP安全审计SaaS创业机会。Ive：漏洞热力图作核心视觉。</p>
+  <p><strong>汇总：P0 🥇</strong> — 本周启动MCP安全审计CI/CD（6h，最高优先级）</p>
+</div>
+
+<div class="paper">
+  <h3>7. MCP Workflow Engine — 智能/执行分离</h3>
+  <span class="verdict tag-p0">P0（推迟6月）</span>
+  <p><strong>信号评审：</strong>🟢 真信号。范式意义>工程意义。Nate Silver P=0.70。token成本-99%数据有说服力。</p>
+  <p><strong>技术评审：</strong>Blueprint Generator+Executor可完全代码落地。Newton：蓝图错误传播是致命风险。</p>
+  <p><strong>远景评审：</strong>Turing：本周最强认知转折——智能/执行分离是Agent架构从"单体"走向"分布式"的关键一步。</p>
+  <p><strong>资源评审：</strong>四可全过。14h（5人日）。建议推迟到6月第1-2周。</p>
+  <p><strong>对外评审：</strong>P0必发。"99%+ token成本降低"具冲击力。乔布斯：★★★★★创业潜力。</p>
+  <p><strong>汇总：P0（推迟）</strong> — 6月第1-2周启动原型（14h）</p>
+</div>
+
+<div class="paper">
+  <h3>8. CDD — RAG知识冲突诊断</h3>
+  <span class="verdict tag-p1">P1 本周调研</span>
+  <p><strong>信号评审：</strong>🟢 真信号。Nate Silver P=0.75。RAG在误导注入下准确率仅15%。CDD在Gemini上64.1%但Claude仅±7%。</p>
+  <p><strong>技术评审：</strong>CDD探针可作为独立模块嵌入izu RAG管线。Newton：准确率仍不够高（64.1%→71.3%）。</p>
+  <p><strong>远景评审：</strong>Turing："Agent知道自己不知道"的前置能力。Feynman：大家关注检索质量，没人关注"检索对了但模型不信"。</p>
+  <p><strong>资源评审：</strong>四可全过。准确率不够高，建议先进主流程。</p>
+  <p><strong>对外评审：</strong>嵌入izu RAG系统整体解读。</p>
+  <p><strong>汇总：P1</strong> — 花2h调研CDD方案，确认是否嵌入izu RAG管线</p>
+</div>
+
+<div class="paper">
+  <h3>9. SU-01 — 金牌级奥赛推理</h3>
+  <span class="verdict tag-observe">观察</span>
+  <p><strong>信号评审：</strong>🟡 有增量价值。Orwell："方法不惊人但证明了'不需要领域定制'"。Nate Silver P=0.85但数据泄露风险。</p>
+  <p><strong>技术评审：</strong>不可纯代码落地。训练算力要求高。</p>
+  <p><strong>远景评审：</strong>Turing："简单配方+大规模扩展"仍然有效。Feynman：没人关注340K训练轨迹的来源和成本。</p>
+  <p><strong>资源评审：</strong>刘伯温不通过四可测试——不可回滚。放弃训练。</p>
+  <p><strong>对外评审：</strong>结果传播力强但核战队无参与。作为独立报道发布。</p>
+  <p><strong>汇总：观察</strong> — 提取方法论（1h），作为对外传播素材</p>
+</div>
+
+<div class="paper">
+  <h3>10. Darwin Family — 进化式模型合并</h3>
+  <span class="verdict tag-observe">观察</span>
+  <p><strong>信号评审：</strong>🔴 Orwell标记术语膨胀。14维基因组等术语饱和度远高于创新度。GPQA #6排名是真但方法论价值有限。</p>
+  <p><strong>技术评审：</strong>可代码落地但价值存疑。Newton：进化合并后模型失效条件未知。</p>
+  <p><strong>远景评审：</strong>Feynman：方向好但方法论太重。</p>
+  <p><strong>资源评审：</strong>四可通过但ROI不明，GPU开销未公布。</p>
+  <p><strong>对外评审：</strong>不发。</p>
+  <p><strong>汇总：观察</strong> — 跟踪但不投入</p>
+</div>
+
+<h2>📋 行动清单</h2>
+
+<div class="actions">
+<h3>P0 🔴 立即行动</h3>
+<ul>
+<li>① <strong>MCP安全审计CI/CD</strong> — 接入MCP-BiFlow扫描思路（6h，本周第1优先）</li>
+<li>② <strong>izu训练管线插入SDAR门控</strong> — 加门控辅助loss（16h，第1-2周）</li>
+<li>③ <strong>MCP Workflow Engine原型</strong> — Blueprint Generator+Executor（14h，推迟到6月）</li>
+<li>④ <strong>MCP模拟验证层</strong> — "先模拟后执行"轻量验证（3h，合并到#1）</li>
+</ul>
+</div>
+
+<div class="actions">
+<h3>P1 🟡 本周调研</h3>
+<ul>
+<li>① 调研MemEye评测框架，确定izu可复用的评测子集（1h）</li>
+<li>② 收集MCP调用日志做安全基线（2h，不做GNN检测）</li>
+<li>③ 调研CDD探针方案，确认是否嵌入izu RAG管线（2h）</li>
+</ul>
+</div>
+
+<div class="actions">
+<h3>P2 🟢 本月跟踪</h3>
+<ul>
+<li>① SU-01方法论提取（1h）</li>
+<li>② Darwin Family模型合并工具（等社区复现评估）</li>
+</ul>
+</div>
+
+<div class="actions">
+<h3>👀 观察清单</h3>
+<ul>
+<li>MemLens（多模态记忆基准）— 当izu做记忆评测时再回看</li>
+<li>δ-mem（在线记忆压缩）— 与izu已有记忆方案对比</li>
+<li>FATE（失败轨迹安全对齐）— 当Hermes考虑安全对齐时触发</li>
+<li>MemPrivacy（边云Agent隐私管理）— 有需求时触发</li>
+</ul>
+</div>
+
+<h2>🛡️ 免疫系统报告</h2>
+
+<div class="immune">
+<h4>🔴 Orwell · 破壁者</h4>
+<p><strong>标记无用：</strong>MinT（披着论文的产品白皮书）、Darwin Family（术语膨胀过度）</p>
+<p><strong>标记包装过度：</strong>SDAR（方法新但非范式突破）、MCP-Cosmos（已有技术装新框架）、SU-01（方法组合不惊人）</p>
+<p><strong>本周信噪比：</strong>20%噪音、30%有增量价值、50%真信号。社区热度与价值持续背离——upvotes最高的论文最不值得读。</p>
+</div>
+
+<div class="immune">
+<h4>⚖️ 刘伯温 · 约束者</h4>
+<p><strong>四可测试通过：</strong>SDAR、MCP-Cosmos（思想提取）、MCP-BiFlow、MCP Workflow Engine、CDD、Darwin Family</p>
+<p><strong>不通过：</strong>MinT（不可验证/不可回滚）、SU-01（不可回滚）、MCPShield GNN部署（不可回滚）</p>
+<p><strong>判定：</strong>4项P0全部通过。注意SDAR的16h远超可用工时窗口，需压缩或分期。</p>
+</div>
+
+<div class="immune">
+<h4>📊 包拯 · 熵审计官</h4>
+<p><strong>Context长度：</strong>约2万字符。正常。</p>
+<p><strong>Semantic Drift：</strong>"MCP"在6种子语境中使用，轻微语义漂移风险。</p>
+<p><strong>Hallucination Amplification：</strong>无——五组审阅均基于日报原文。</p>
+<p><strong>Recursive Contamination：</strong>无——首轮审阅无历史循环。</p>
+</div>
+
+<details>
+<summary>📂 完整报告 · 各评审组链接</summary>
+<div class="inner">
+<p>• 信号评审（子产+Nate+Orwell）：<code>output/doc/frontier-review-signal-2026-05-17.md</code></p>
+<p>• 技术评审（鲁班+匠石+Newton+Edison）：<code>output/doc/frontier-review-tech-2026-05-17.md</code></p>
+<p>• 远景评审（韩信+Turing+Feynman）：<code>output/doc/frontier-review-vision-2026-05-17.md</code></p>
+<p>• 资源评审（萧何+von Neumann+刘伯温）：<code>output/doc/frontier-review-resource-2026-05-17.md</code></p>
+<p>• 对外评审（子贡+张骞+乔布斯+Ive）：<code>output/doc/frontier-review-publish-2026-05-17.md</code></p>
+<p>• 日报原文：<code>output/doc/paper-daily-digest-2026-05-17.md</code></p>
+</div>
+</details>
+
+<footer>
+核战队前沿审阅 · 2026-05-17 · 军师汇总<br>
+参与专家17人 · 审阅论文10篇 · 产出P0行动4项 · 噪音过滤率20%
+</footer>
+
+</body>
+</html>

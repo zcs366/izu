@@ -1,0 +1,82 @@
+# HTML Generation — Dark Theme Briefing Report Template
+
+用于 Skills Hub 巡查报告的 HTML 渲染。
+
+## CSS 核心架构
+
+```css
+/* 背景 */
+body { background: #0d0d0f; color: #d4d4d8; }
+
+/* 标题层级 */
+h1 { color: #C9A94E; border-bottom: 2px solid #C9A94E33; }
+h2 { color: #C9A94E; border-left: 3px solid #C9A94E; padding-left: 12px; }
+h3 { color: #e0d5b0; }
+
+/* 引用块（表头） */
+blockquote { background: #1a1a2e; border-left: 4px solid #C9A94E; border-radius: 0 8px 8px 0; }
+blockquote strong { color: #C9A94E; }
+
+/* 表格 */
+th { background: #1a1a2e; color: #C9A94E; border: 1px solid #2a2a3e; }
+td { border: 1px solid #2a2a3e; }
+tr:nth-child(even) td { background: #12121e; }
+tr:nth-child(odd) td { background: #0d0d15; }
+
+/* 代码 */
+code { background: #1a1a2e; color: #e8d5a0; border-radius: 4px; font-family: "JetBrains Mono", monospace; }
+pre { background: #0a0a14; border: 1px solid #2a2a3e; border-radius: 8px; }
+
+/* 分割线 */
+hr { border-top: 1px solid #2a2a3e; }
+```
+
+## 字体栈
+
+```css
+font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+```
+
+## 打印样式
+
+```css
+@media print {
+    body { background: white; color: #222; }
+    h1, h2, blockquote strong, th { color: #8B5E3C; }
+    h2 { border-left-color: #8B5E3C; }
+    th { background: #f0ebe0; color: #5a3e2c; }
+    td { border-color: #ccc; }
+    code { background: #f0ebe0; color: #5a3e2c; }
+    pre { background: #f5f0e8; border-color: #ccc; }
+}
+```
+
+## 响应式
+
+```css
+@media (max-width: 600px) {
+    .container { padding: 20px 12px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    table { font-size: 12px; }
+}
+```
+
+## 转换流程
+
+```python
+import markdown
+html_body = markdown.markdown(md_content, extensions=['markdown.extensions.tables',
+    'markdown.extensions.fenced_code', 'markdown.extensions.toc'])
+# Checkbox conversion
+html_body = html_body.replace('- [ ] ', '- <input type="checkbox" disabled> ')
+html_body = html_body.replace('- [x] ', '- <input type="checkbox" checked disabled> ')
+# Wrap in HTML + CSS
+```
+
+## 布局结构
+
+- 容器: `max-width: 960px; margin: 0 auto; padding: 40px 24px;`
+- 不用外部依赖，全 inline CSS
+- 不用 JavaScript

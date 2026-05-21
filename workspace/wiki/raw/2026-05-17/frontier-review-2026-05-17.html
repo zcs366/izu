@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 核战队前沿审阅 · 2026-05-17</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --card: #16213e;
+    --text: #e4e4e4;
+    --accent: #e94560;
+    --gold: #ffd700;
+    --green: #4ecdc4;
+    --orange: #ffa726;
+    --gray: #888;
+    --border: #2a2a4a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--gold); }
+  .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 0.8rem; }
+  h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--gold); }
+  .summary { background: var(--card); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; font-size: 0.95rem; }
+  .paper { background: var(--card); padding: 1.2rem 1.2rem 0.8rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--gray); }
+  .paper.p0 { border-left-color: var(--accent); }
+  .paper.p1 { border-left-color: var(--orange); }
+  .paper.p2 { border-left-color: var(--gold); }
+  .paper.observe { border-left-color: var(--green); }
+  .paper.noise { border-left-color: #555; opacity: 0.6; }
+  .paper-title { font-weight: 600; margin-bottom: 0.3rem; }
+  .verdict { display: inline-block; padding: 0.15rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .verdict.p0 { background: var(--accent); color: #fff; }
+  .verdict.p1 { background: var(--orange); color: #fff; }
+  .verdict.p2 { background: var(--gold); color: #000; }
+  .verdict.observe { background: var(--green); color: #000; }
+  .verdict.noise { background: #555; color: #aaa; }
+  .verdict-text { font-size: 0.9rem; color: #ccc; }
+  .actions { list-style: none; }
+  .actions li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: flex-start; }
+  .actions li:last-child { border-bottom: none; }
+  .tag { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+  .p0-tag { background: var(--accent); color: #fff; }
+  .p1-tag { background: var(--orange); color: #fff; }
+  .p2-tag { background: var(--gold); color: #000; }
+  .observe-tag { background: var(--green); color: #000; }
+  .noise-tag { background: #555; color: #aaa; }
+  details { background: var(--card); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; }
+  details summary { cursor: pointer; font-weight: 600; color: var(--gold); }
+  details table { width: 100%; margin-top: 0.8rem; border-collapse: collapse; font-size: 0.85rem; }
+  details th, details td { padding: 0.5rem; border: 1px solid var(--border); text-align: left; }
+  details th { background: #1a1a3e; }
+  .badge { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 3px; font-size: 0.7rem; }
+  .badge-green { background: #2e7d32; color: #a5d6a7; }
+  .badge-red { background: #b71c1c; color: #ef9a9a; }
+  .badge-yellow { background: #f57f17; color: #fff9c4; }
+  .badge-ok { background: #1b5e20; color: #c8e6c9; }
+  .badge-warn { background: #e65100; color: #ffe0b2; }
+  .badge-skip { background: #555; color: #ccc; }
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    h1 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🌐 核战队前沿审阅</h1>
+<p class="meta">2026-05-17 | 参与专家：子产·Nate Silver·Orwell · 鲁班·匠石·Newton·Edison · 韩信·Turing·Feynman · 萧何·von Neumann·刘伯温 · 子贡·张骞·乔布斯·Jony Ive | 审阅对象：论文日报 10篇</p>
+
+<section id="summary">
+  <h2>📋 每日综述</h2>
+  <div class="summary">
+  <p><strong>核心信号：MCP生态进入"安全加固+智能提升"双轨阶段。</strong></p>
+  <p>今日10篇论文中最值得关注的趋势是三条线索的同时涌现：MCP生态在本周集中出现安全审计（MCP-BiFlow）、攻击检测（MCPShield）、世界模型增强（MCP-Cosmos）四篇论文——MCP正在从"协议落地"快速进入"工程成熟度提升"阶段。对Hermes Agent而言，这是核心路线红利期。</p>
+  <p>Agent记忆评估体系达到新高度——MemEye（NVIDIA）提供了首个视觉中心的多模态记忆评测。无训练推理增强技术（Darwin Family）和高效训练技术（SU-01）表明推理能力提升正在多元化。</p>
+  <p><strong>P0行动</strong>：MCP-BiFlow安全规则库 → 产出可执行的安全checklist；轻量MemEye方法论借鉴 → 集成izu memory eval；CDD探针 → 诊断Wiki知识系统的知识冲突。</p>
+  <p><strong>P1行动</strong>：MCP-Cosmos路线A实验、SU-01思想提取。</p>
+  <p><strong>免疫系统</strong>：Orwell标记MinT和MCP Workflow Engine为噪音，SDAR为重复劳动嫌疑——核战队采纳，节省约30%深度评审算力。</p>
+  </div>
+</section>
+
+<section id="papers">
+  <h2>📄 逐篇审阅</h2>
+
+  <div class="paper noise">
+    <span class="verdict noise">❌ 噪音</span>
+    <div class="paper-title">1. SDAR · 自蒸馏Agentic RL</div>
+    <div class="verdict-text">Orwell标记重复劳动嫌疑。自蒸馏+RL缺乏真实环境交互验证，self-reinforcing bias loop。无公开代码跳过。</div>
+  </div>
+
+  <div class="paper p1">
+    <span class="verdict p1">P1</span>
+    <div class="paper-title">2. MemEye · 多模态Agent记忆视觉中心评估框架 (NVIDIA)</div>
+    <div class="verdict-text">真实需求。视觉中心评估改变了"记忆好"的定义。取方法论轻量融入izu memory eval，不完整复现。注意：NVIDIA可能通过基准定义权影响生态方向。</div>
+  </div>
+
+  <div class="paper noise">
+    <span class="verdict noise">❌ 噪音</span>
+    <div class="paper-title">3. MinT · 百万级LLM训练/服务管理基础设施 (HF #1 205票)</div>
+    <div class="verdict-text">Orwell标记重复劳动。已有Ray Serve/vLLM/K8s成熟方案。HF高票反映社区焦虑而非方案突破。</div>
+  </div>
+
+  <div class="paper p1">
+    <span class="verdict p1">P1</span>
+    <div class="paper-title">4. MCP-Cosmos · 世界模型增强的MCP环境Agent</div>
+    <div class="verdict-text">重大认知转折——MCP从协议层转向智能层。先用路线A（prompt mental simulation）跑实验，路线B（世界模型训练）延期。注意：多步预测误差累积风险。</div>
+  </div>
+
+  <div class="paper p2">
+    <span class="verdict p2">P2</span>
+    <div class="paper-title">5. MCPShield · MCP工具调用攻击检测 (GNN, AUROC 0.975)</div>
+    <div class="verdict-text">真实需求但非紧急。AUROC 0.975被多方质疑（测试集构造偏差、不平衡分布）。先做logging layer积累数据，等规模到了再训练GNN。</div>
+  </div>
+
+  <div class="paper p0">
+    <span class="verdict p0">P0 🔥</span>
+    <div class="paper-title">6. MCP-BiFlow · MCP生态双向数据流风险分析 (15,452仓库·87漏洞)</div>
+    <div class="verdict-text"><strong>本周最高优先级。</strong>实证安全审计，100%代码落地。直接产出 `mcp_security_rules.yaml` + 自动化测试套件。注意MCP依赖树隐式信任传递的盲区，以及漏洞时效性（部分可能已修复）。</div>
+  </div>
+
+  <div class="paper noise">
+    <span class="verdict noise">❌ 噪音</span>
+    <div class="paper-title">7. MCP Workflow Engine · 智能与执行分离 (99%+ token节省)</div>
+    <div class="verdict-text">Orwell标记伪深度。IoC模式包装成"新引擎"，99%+数学不可能——核战队全线跳过。</div>
+  </div>
+
+  <div class="paper p1">
+    <span class="verdict p1">P1</span>
+    <div class="paper-title">8. Does RAG Know · RAG知识冲突诊断 (CDD探针)</div>
+    <div class="verdict-text">真实需求。CDD探针95%代码落地，直接用于Wiki知识系统的知识冲突诊断。认知转折：RAG不是"检索+生成"简单叠加，需要知识冲突仲裁层。注意：CDD假设置信于上下文优于世界知识——有争议。</div>
+  </div>
+
+  <div class="paper p2">
+    <span class="verdict p2">P2</span>
+    <div class="paper-title">9. SU-01 · 金牌级奥赛推理 (30B-A3B, 反向困惑度课程+两阶段RL)</div>
+    <div class="verdict-text">有实质增量。认知转折：反向课程（从难到易）挑战传统直觉。不尝试完整复现（算力不足），提取反向课程+推理长度惩罚思想在izu小场景实验。</div>
+  </div>
+
+  <div class="paper p2">
+    <span class="verdict p2">P2</span>
+    <div class="paper-title">10. Darwin Family · 进化式模型合并 (GPQA #6, 无训练扩展推理)</div>
+    <div class="verdict-text">认知转折：模型能力来自架构组合优化而非参数量增长。建合并框架（基于mergekit），等izu有多个checkpoint再跑实验。注意：可复现性和安全评估缺失。</div>
+  </div>
+</section>
+
+<section id="actions">
+  <h2>⚡ 行动清单</h2>
+  <ul class="actions">
+
+    <li><span class="tag p0-tag">P0</span> <strong>MCP-BiFlow安全规则库</strong> — 解析87个漏洞，产出 `mcp_security_rules.yaml` + 自动化测试套件 + `MCP_SECURITY_CHECKLIST.md`（鲁班+匠石，2-3天）</li>
+
+    <li><span class="tag p0-tag">P0</span> <strong>MemEye方法借鉴</strong> — 取评估维度和方法论，轻量集成到izu memory eval，非框架复现（匠石，1-2天）</li>
+
+    <li><span class="tag p0-tag">P0</span> <strong>CDD探针引入Wiki</strong> — 在Wiki知识系统上跑RAG知识冲突诊断，构造领域测试集（匠石+鲁班，2-3天）</li>
+
+    <li><span class="tag p1-tag">P1</span> <strong>MCP-Cosmos路线A</strong> — MCP tool pre-invocation hook + prompt mental simulation实验（匠石，2天）</li>
+
+    <li><span class="tag p1-tag">P1</span> <strong>MCP-BiFlow对外发布准备</strong> — 撰写MCP生态安全报告（知乎版），需用户审批</li>
+
+    <li><span class="tag p1-tag">P1</span> <strong>SU-01思想提取</strong> — 读全文，出反向课程+推理长度惩罚设计文档（鲁班，3h）</li>
+
+    <li><span class="tag p2-tag">P2</span> <strong>Darwin Family合并框架</strong> — 基于mergekit实现进化合并框架（匠石，2天）</li>
+
+    <li><span class="tag p2-tag">P2</span> <strong>MCPShield logging layer</strong> — MCP调用日志收集组件（匠石，1-2天）</li>
+
+    <li><span class="tag p2-tag">P2</span> <strong>SU-01小场景实验</strong> — izu较小规模下验证反向课程效果（鲁班，3-5h）</li>
+
+  </ul>
+</section>
+
+<section id="immune">
+  <details>
+    <summary>🛡 免疫系统报告（点击展开）</summary>
+
+    <h3>Orwell破壁者</h3>
+    <table>
+      <tr><th>论文</th><th>标记</th><th>理由</th></tr>
+      <tr><td>MinT (#3)</td><td><span class="badge badge-red">🔴 重复劳动</span></td><td>已有成熟方案替代</td></tr>
+      <tr><td>MCP Workflow Engine (#7)</td><td><span class="badge badge-red">🔴 伪深度</span></td><td>99%+ token节省数学不可能</td></tr>
+      <tr><td>SDAR (#1)</td><td><span class="badge badge-yellow">⚠️ 重复劳动嫌疑</span></td><td>self-play+RL换名</td></tr>
+    </table>
+
+    <h3>刘伯温约束者</h3>
+    <table>
+      <tr><th>行动项</th><th>四可测试</th><th>结果</th></tr>
+      <tr><td>MCP-BiFlow安全规则库</td><td>✅✅✅✅</td><td><span class="badge badge-ok">通过</span></td></tr>
+      <tr><td>MemEye方法借鉴</td><td>✅✅⚠️✅</td><td><span class="badge badge-warn">可失败存疑→P1</span></td></tr>
+      <tr><td>CDD探针引入Wiki</td><td>✅✅✅✅</td><td><span class="badge badge-ok">通过</span></td></tr>
+      <tr><td>MCP-Cosmos路线A</td><td>✅✅✅✅</td><td><span class="badge badge-ok">通过</span></td></tr>
+      <tr><td>SU-01思想提取</td><td>✅⚠️✅✅</td><td><span class="badge badge-warn">可测量存疑→P2</span></td></tr>
+      <tr><td>Darwin合并框架</td><td>✅✅✅✅</td><td><span class="badge badge-ok">通过</span></td></tr>
+    </table>
+
+    <h3>包拯熵审计官</h3>
+    <table>
+      <tr><th>维度</th><th>状态</th><th>说明</th></tr>
+      <tr><td>Context长度</td><td><span class="badge badge-ok">🟢</span></td><td>约50k token，合理</td></tr>
+      <tr><td>Semantic Drift</td><td><span class="badge badge-ok">🟢</span></td><td>各组结论收敛一致</td></tr>
+      <tr><td>Hallucination Amplification</td><td><span class="badge badge-ok">🟢</span></td><td>MCP-BiFlow判据有数据支撑</td></tr>
+      <tr><td>Recursive Contamination</td><td><span class="badge badge-ok">🟢</span></td><td>首轮审阅，无历史循环</td></tr>
+    </table>
+  </details>
+</section>
+
+<p class="meta" style="margin-top: 3rem; text-align: center;">
+  核战队前沿审阅 · 军师祭酒  |  2026-05-17 08:36 CST
+</p>
+</body>
+</html>

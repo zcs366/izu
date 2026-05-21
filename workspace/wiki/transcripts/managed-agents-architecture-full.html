@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Anthropic Managed Agents 架构拆解 — 转录+合议</title>
+<style>
+body{background:#0d1117;color:#c9d1d9;font-family:Noto Sans SC,sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:2rem 1rem}
+h1{font-size:1.8rem;color:#f0f6fc;margin:1.5rem 0 0.5rem}
+h2{font-size:1.3rem;color:#58a6ff;border-left:3px solid #58a6ff;padding-left:0.8rem;margin:2rem 0 1rem}
+.meta{color:#8b949e;font-size:0.9rem;border-bottom:1px solid #21262d;padding-bottom:1rem;margin-bottom:2rem}
+.p0{color:#da3633;font-weight:700}
+.p1{color:#d29922;font-weight:700}
+.p2{color:#58a6ff;font-weight:700}
+blockquote{border-left:3px solid #30363d;padding:0.5rem 1rem;margin:1rem 0;color:#8b949e;background:#161b22;border-radius:0 6px 6px 0}
+.footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #21262d;color:#484f58;font-size:0.85rem;text-align:center}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+td,th{border:1px solid #30363d;padding:0.5rem;text-align:left}
+th{background:#161b22;color:#58a6ff}
+</style>
+</head>
+<body>
+
+<h1>Anthropic Managed Agents 四层解耦架构</h1>
+<div class="meta">UP主：小天fotos | 时长：11:26 | B站 BV1DB546wEb8 | 评估：军师祭酒+五人合议</div>
+
+<h2>核心架构（四层解耦）</h2>
+<table>
+<tr><th>层</th><th>解耦对象</th><th>效果</th></tr>
+<tr><td>第1层</td><td>Agent ↔ 沙盒</td><td>大脑和双手分开，崩了换一双</td></tr>
+<tr><td>第2层</td><td>Coordinator编排</td><td>1指挥官+20专业Agent</td></tr>
+<tr><td>第3层</td><td>Session记忆树</td><td>fork/回滚/克隆</td></tr>
+<tr><td>第4层</td><td>Session Store</td><td>云端无状态，随时销毁重建</td></tr>
+</table>
+
+<h2>五人合议结论</h2>
+<p><strong>子产</strong>：窄做。学Session checkpoint，不重构整体架构。</p>
+<p><strong>韩信</strong>：v4.5可暂停流水线 → v4.7时间旅行流水线。</p>
+<p><strong>鲁班</strong>：砍600行冗余（coordinator+sandbox），造730行新代码。</p>
+<p><strong>萧何</strong>：22小时工作，10周日历，关键路径P1序列化引擎。</p>
+<p><strong>军师终裁</strong>：做。窄做。走izu v4.4→v4.5→v4.7路线。</p>
+
+<h2>P0 行动</h2>
+<p><span class="p0">P0</span> 砍izu_coordinator.py和izu_sandbox.py，复用Hermes原生协调</p>
+<p><span class="p0">P0</span> 创建izu_session_serde.py序列化引擎</p>
+
+<h2>P1 行动</h2>
+<p><span class="p1">P1</span> CP1/CP3/CP4/CP5全部代码化评分</p>
+<p><span class="p1">P1</span> 统一CP通知机制</p>
+
+<h2>P2 行动</h2>
+<p><span class="p2">P2</span> 流水线集成session checkpoint</p>
+<p><span class="p2">P2</span> 分支管理（fork/rollback/merge）</p>
+
+<blockquote>Anthropic 的阳谋：做云端的Agent操作系统。我们的路径：学其Session checkpoint哲学，不改拓扑，不做20角色并行，不引入Docker。</blockquote>
+
+<div class="footer">军师祭酒 · 五人合议 · 2026-05-16</div>
+</body>
+</html>
