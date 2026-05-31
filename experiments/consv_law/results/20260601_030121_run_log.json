@@ -1,0 +1,462 @@
+{
+  "experiment": "成市守恒律全实验复现",
+  "timestamp": "20260601_030121",
+  "seed": 42,
+  "device": "cuda",
+  "results": {
+    "tc2": [
+      {
+        "dim": 768,
+        "cosine_mean": 1.0,
+        "cosine_std": 0.0,
+        "nn_accuracy": 1.0,
+        "bits": 24576,
+        "compression_ratio": 1.0
+      },
+      {
+        "dim": 512,
+        "cosine_mean": 0.956,
+        "cosine_std": 0.0078,
+        "nn_accuracy": 0.8,
+        "bits": 16384,
+        "compression_ratio": 1.5
+      },
+      {
+        "dim": 384,
+        "cosine_mean": 0.9333,
+        "cosine_std": 0.0128,
+        "nn_accuracy": 0.9,
+        "bits": 12288,
+        "compression_ratio": 2.0
+      },
+      {
+        "dim": 256,
+        "cosine_mean": 0.8988,
+        "cosine_std": 0.0206,
+        "nn_accuracy": 0.7,
+        "bits": 8192,
+        "compression_ratio": 3.0
+      },
+      {
+        "dim": 128,
+        "cosine_mean": 0.707,
+        "cosine_std": 0.109,
+        "nn_accuracy": 0.7,
+        "bits": 4096,
+        "compression_ratio": 6.0
+      },
+      {
+        "dim": 64,
+        "cosine_mean": 0.131,
+        "cosine_std": 0.013,
+        "nn_accuracy": 0.4,
+        "bits": 2048,
+        "compression_ratio": 12.0
+      },
+      {
+        "dim": 48,
+        "cosine_mean": 0.1215,
+        "cosine_std": 0.0125,
+        "nn_accuracy": 0.4,
+        "bits": 1536,
+        "compression_ratio": 16.0
+      },
+      {
+        "dim": 32,
+        "cosine_mean": 0.1092,
+        "cosine_std": 0.0104,
+        "nn_accuracy": 0.25,
+        "bits": 1024,
+        "compression_ratio": 24.0
+      },
+      {
+        "dim": 24,
+        "cosine_mean": 0.0818,
+        "cosine_std": 0.0176,
+        "nn_accuracy": 0.25,
+        "bits": 768,
+        "compression_ratio": 32.0
+      },
+      {
+        "dim": 16,
+        "cosine_mean": 0.0722,
+        "cosine_std": 0.0154,
+        "nn_accuracy": 0.2,
+        "bits": 512,
+        "compression_ratio": 48.0
+      },
+      {
+        "dim": 12,
+        "cosine_mean": 0.0597,
+        "cosine_std": 0.0138,
+        "nn_accuracy": 0.1,
+        "bits": 384,
+        "compression_ratio": 64.0
+      },
+      {
+        "dim": 8,
+        "cosine_mean": 0.0513,
+        "cosine_std": 0.0124,
+        "nn_accuracy": 0.1,
+        "bits": 256,
+        "compression_ratio": 96.0
+      }
+    ],
+    "section32": {
+      "D0": 552,
+      "D_noisy": 664,
+      "C_mean": 610.9090909090909,
+      "C_std": 77.35802778516214,
+      "dr_results": [
+        {
+          "d": 384,
+          "rounds": 2,
+          "d_times_r": 768,
+          "cos_sim": 0.9998,
+          "converged": true
+        },
+        {
+          "d": 256,
+          "rounds": 3,
+          "d_times_r": 768,
+          "cos_sim": 0.9998,
+          "converged": true
+        },
+        {
+          "d": 192,
+          "rounds": 3,
+          "d_times_r": 576,
+          "cos_sim": 0.9597,
+          "converged": true
+        },
+        {
+          "d": 128,
+          "rounds": 5,
+          "d_times_r": 640,
+          "cos_sim": 0.9777,
+          "converged": true
+        },
+        {
+          "d": 96,
+          "rounds": 6,
+          "d_times_r": 576,
+          "cos_sim": 0.9597,
+          "converged": true
+        },
+        {
+          "d": 64,
+          "rounds": 9,
+          "d_times_r": 576,
+          "cos_sim": 0.9597,
+          "converged": true
+        },
+        {
+          "d": 48,
+          "rounds": 12,
+          "d_times_r": 576,
+          "cos_sim": 0.9597,
+          "converged": true
+        },
+        {
+          "d": 32,
+          "rounds": 18,
+          "d_times_r": 576,
+          "cos_sim": 0.9597,
+          "converged": true
+        },
+        {
+          "d": 24,
+          "rounds": 23,
+          "d_times_r": 552,
+          "cos_sim": 0.9515,
+          "converged": true
+        },
+        {
+          "d": 16,
+          "rounds": 35,
+          "d_times_r": 560,
+          "cos_sim": 0.9543,
+          "converged": true
+        },
+        {
+          "d": 12,
+          "rounds": 46,
+          "d_times_r": 552,
+          "cos_sim": 0.9515,
+          "converged": true
+        },
+        {
+          "d": 8,
+          "rounds": 50,
+          "d_times_r": 400,
+          "cos_sim": 0.8793,
+          "converged": false
+        }
+      ]
+    },
+    "chomsky": {
+      "Type3_regular": {
+        "D0": 16
+      },
+      "Type2_anbn": {
+        "D0": 16
+      },
+      "Type1_anbncn": {
+        "D0": 16
+      },
+      "Type0_XOR": {
+        "D0": 8
+      }
+    },
+    "section34_feedback": {
+      "D0_sender": 64,
+      "D_misalign": 768,
+      "best_feedback": {
+        "d1": 20,
+        "d2": 52,
+        "total": 72,
+        "cos": 0.9516,
+        "vs_D0": 8,
+        "vs_Dmis": -696,
+        "saving_pct": 90.6
+      }
+    },
+    "section35_fsq": {
+      "fp32_baseline": {
+        "cos": 0.8657,
+        "bytes": 1536
+      },
+      "best_fsq": null,
+      "fsq_results": [
+        {
+          "L": 3,
+          "bits_per_dim": 1.6,
+          "bytes": 76.1,
+          "cos_sim": 0.7787,
+          "compression_ratio": 20.2,
+          "达标": false
+        },
+        {
+          "L": 5,
+          "bits_per_dim": 2.3,
+          "bytes": 111.5,
+          "cos_sim": 0.8216,
+          "compression_ratio": 13.8,
+          "达标": false
+        },
+        {
+          "L": 7,
+          "bits_per_dim": 2.8,
+          "bytes": 134.8,
+          "cos_sim": 0.8306,
+          "compression_ratio": 11.4,
+          "达标": false
+        },
+        {
+          "L": 9,
+          "bits_per_dim": 3.2,
+          "bytes": 152.2,
+          "cos_sim": 0.8333,
+          "compression_ratio": 10.1,
+          "达标": false
+        },
+        {
+          "L": 11,
+          "bits_per_dim": 3.5,
+          "bytes": 166.1,
+          "cos_sim": 0.8344,
+          "compression_ratio": 9.3,
+          "达标": false
+        },
+        {
+          "L": 15,
+          "bits_per_dim": 3.9,
+          "bytes": 187.5,
+          "cos_sim": 0.835,
+          "compression_ratio": 8.2,
+          "达标": false
+        },
+        {
+          "L": 31,
+          "bits_per_dim": 5.0,
+          "bytes": 237.8,
+          "cos_sim": 0.8353,
+          "compression_ratio": 6.5,
+          "达标": false
+        },
+        {
+          "L": 63,
+          "bits_per_dim": 6.0,
+          "bytes": 286.9,
+          "cos_sim": 0.8352,
+          "compression_ratio": 5.4,
+          "达标": false
+        }
+      ],
+      "intent_fsq": [
+        {
+          "L": 3,
+          "bytes": 2.0,
+          "cos_sim": 0.9927,
+          "达标": true
+        },
+        {
+          "L": 5,
+          "bytes": 2.9,
+          "cos_sim": 0.9934,
+          "达标": true
+        },
+        {
+          "L": 7,
+          "bytes": 3.5,
+          "cos_sim": 0.9939,
+          "达标": true
+        },
+        {
+          "L": 9,
+          "bytes": 4.0,
+          "cos_sim": 0.9939,
+          "达标": true
+        },
+        {
+          "L": 15,
+          "bytes": 4.9,
+          "cos_sim": 0.9936,
+          "达标": true
+        },
+        {
+          "L": 31,
+          "bytes": 6.2,
+          "cos_sim": 0.9935,
+          "达标": true
+        }
+      ]
+    },
+    "section36_recursive": {
+      "progressive": [
+        {
+          "d": 384,
+          "rounds": 1,
+          "d_times_r": 384,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 256,
+          "rounds": 1,
+          "d_times_r": 256,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 192,
+          "rounds": 1,
+          "d_times_r": 192,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 128,
+          "rounds": 1,
+          "d_times_r": 128,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 96,
+          "rounds": 1,
+          "d_times_r": 96,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 64,
+          "rounds": 1,
+          "d_times_r": 64,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 48,
+          "rounds": 1,
+          "d_times_r": 48,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 32,
+          "rounds": 1,
+          "d_times_r": 32,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 24,
+          "rounds": 1,
+          "d_times_r": 24,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 16,
+          "rounds": 1,
+          "d_times_r": 16,
+          "cos_sim": 1.0
+        }
+      ],
+      "residual": [
+        {
+          "d": 384,
+          "rounds": 1,
+          "d_times_r": 384,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 256,
+          "rounds": 1,
+          "d_times_r": 256,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 192,
+          "rounds": 1,
+          "d_times_r": 192,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 128,
+          "rounds": 1,
+          "d_times_r": 128,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 96,
+          "rounds": 1,
+          "d_times_r": 96,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 64,
+          "rounds": 1,
+          "d_times_r": 64,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 48,
+          "rounds": 1,
+          "d_times_r": 48,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 32,
+          "rounds": 1,
+          "d_times_r": 32,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 24,
+          "rounds": 1,
+          "d_times_r": 24,
+          "cos_sim": 1.0
+        },
+        {
+          "d": 16,
+          "rounds": 1,
+          "d_times_r": 16,
+          "cos_sim": 1.0
+        }
+      ]
+    }
+  }
+}

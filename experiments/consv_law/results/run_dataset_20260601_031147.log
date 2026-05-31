@@ -1,0 +1,21 @@
+生成 155 条意图
+类别分布: 代码~500, 研究~45, Agent通信~50
+前5条: ['帮我写一个Python脚本来批量处理这些文件', '这段代码有性能瓶颈，帮我优化', '把这个函数从同步改成异步', '用Rust重写这个Python模块', '帮我debug这个NullPointerException']
+
+加载 ModernBERT...
+Loading weights:   0%|          | 0/134 [00:00<?, ?it/s]Loading weights: 100%|██████████| 134/134 [00:00<00:00, 2197.96it/s]
+[transformers] [1mModernBertModel LOAD REPORT[0m from: answerdotai/ModernBERT-base
+Key               | Status     |  | 
+------------------+------------+--+-
+head.norm.weight  | UNEXPECTED |  | 
+head.dense.weight | UNEXPECTED |  | 
+decoder.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+编码中...
+Batches:   0%|          | 0/5 [00:00<?, ?it/s]Batches:  20%|██        | 1/5 [00:00<00:01,  2.45it/s]Batches:  80%|████████  | 4/5 [00:00<00:00,  9.55it/s]Batches: 100%|██████████| 5/5 [00:00<00:00,  8.84it/s]
+Shape: (155, 768)
+
+✅ 保存: data/intent_dataset_550.npy ((155, 768))
+✅ 保存: data/intent_dataset_550.txt (155 条)

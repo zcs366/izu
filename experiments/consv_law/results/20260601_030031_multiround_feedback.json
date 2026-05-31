@@ -1,0 +1,40 @@
+{
+  "structured_misalignment": {
+    "D0": 64,
+    "rounds": [
+      {
+        "round": 1,
+        "delta_d": 62,
+        "cumulative_d": 62,
+        "cos_sim": 0.9503
+      },
+      {
+        "round": 2,
+        "delta_d": 2,
+        "cumulative_d": 64,
+        "cos_sim": 0.9614
+      }
+    ],
+    "final_total_d": 64,
+    " converges_to_D0 ": true
+  },
+  "arq_noise": {
+    "D0": 552,
+    "rounds": [
+      {
+        "round": 1,
+        "delta_d": 658,
+        "cumulative_d": 658,
+        "cos_sim": 0.9502
+      },
+      {
+        "round": 2,
+        "delta_d": 2,
+        "cumulative_d": 660,
+        "cos_sim": 0.9506
+      }
+    ],
+    "final_total_d": 660,
+    " converges_to_D0 ": false
+  }
+}
